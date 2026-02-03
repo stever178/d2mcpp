@@ -1,4 +1,4 @@
-add_plugindirs("d2x/buildtools")
+add_plugindirs("d2x/buildtools/xmake")
 
 add_includedirs(".")
 

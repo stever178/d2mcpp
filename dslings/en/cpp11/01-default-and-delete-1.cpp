@@ -23,6 +23,12 @@
 struct UniquePtr {
     void *dataPtr;
     UniquePtr() = default;
+
+    UniquePtr(const UniquePtr &) = delete;
+    UniquePtr &operator=(const UniquePtr &) = delete;
+
+    UniquePtr(UniquePtr &&) = default;
+    UniquePtr &operator=(UniquePtr &&) = default;
 };
 
 int main() { // Do not directly modify the code in the main function
