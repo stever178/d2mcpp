@@ -48,7 +48,7 @@ int main() { // Do not directly modify the code in the main function
     // a = std::move(c); // ok
     d2x_assert(std::is_move_assignable<UniquePtr>::value == true);
 
-    D2X_WAIT
+    // D2X_WAIT
 
     return 0;
 }

@@ -52,14 +52,14 @@ struct  MP3Player : AudioPlayer {
 
 struct OGGPlayer : AudioPlayer {
     // Correctly implement OGGPlayer
-
-    void play() override {
-        // init_audio_params();
+    
+    void init_audio_params() override {
         std::cout << "OGGPlayer: Initializing audio parameters..." << std::endl;
-        // play_audio();
-        std::cout << "OGGPlayer: Playing OGG audio..." << std::endl;
     }
 
+    void play_audio() override {
+        std::cout << "OGGPlayer: Playing OGG audio..." << std::endl;
+    }
 };
 
 
@@ -77,7 +77,7 @@ int main() { // Do not directly modify the code in the main function
     delete player2;
     delete player3;
 
-    D2X_WAIT
+    // D2X_WAIT
 
     return 0;
 }
