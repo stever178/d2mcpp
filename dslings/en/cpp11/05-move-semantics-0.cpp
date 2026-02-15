@@ -51,26 +51,27 @@ int main() {
     {
         Buffer buff1 = process(Buffer());
         auto buff1DataPtr = buff1.data_ptr();
-
         std::cout << " --- " << std::endl;
 
         Buffer buff2(std::move(buff1));
         auto buff2DataPtr = buff2.data_ptr();
-
         d2x_assert(buff1DataPtr == buff2DataPtr);
+        std::cout << " --- " << std::endl;
 
-        Buffer buff3 = buff2;
+        // Buffer buff3 = buff2;
+        Buffer& buff3 = buff2;
         auto buff3DataPtr = buff3.data_ptr();
-
         d2x_assert(buff2DataPtr == buff3DataPtr);
+        std::cout << " --- " << std::endl;
 
-        Buffer buff4 = process(buff3);
+        // Buffer buff4 = process(buff3);
+        Buffer buff4 = process(std::move(buff3));
         auto buff4DataPtr = buff4.data_ptr();
-
         d2x_assert(buff3DataPtr == buff4DataPtr);
+        std::cout << " --- " << std::endl;
     }
 
-    D2X_WAIT
+    // D2X_WAIT
 
     return 0;
 }
