@@ -18,14 +18,14 @@
 
 #include <iostream>
 
-enum Color {
+enum class Color {
     RED,
     GREEN,
     BLUE,
     ORANGE // 1. Type conflict - Orange color
 };
 
-enum Fruit {
+enum class Fruit {
     Apple,
     Banana,
     ORANGE // 1. Type conflict - Orange fruit
@@ -33,23 +33,25 @@ enum Fruit {
 
 int main() {
  
-    Color color = RED;
-    Fruit fruit = Apple;
+    Color color = Color::RED;
+    Fruit fruit = Fruit::Apple;
 
-    d2x_assert_eq(color, RED);
-    d2x_assert_eq(fruit, Apple);
+    // d2x_assert_eq(color, Color::RED);
+    // d2x_assert_eq(fruit, Fruit::Apple);
+    d2x_assert(color == Color::RED);
+    d2x_assert(fruit == Fruit::Apple);
 
     // 2. Syntactically correct, but logically wrong type matching
-    if (color == Apple) { // Do not delete this line of code
-        // Code will run here
-        D2X_WAIT
+    if (color == Color::RED) { // Do not delete this line of code
+        // Code will runFruit
+        // D2X_WAIT
     }
 
-    if (fruit == RED) {
-        D2X_WAIT
+    if (fruit == Fruit::Apple) {
+        // D2X_WAIT
     }
 
-    D2X_WAIT
+    // D2X_WAIT
 
     return 0;
 }

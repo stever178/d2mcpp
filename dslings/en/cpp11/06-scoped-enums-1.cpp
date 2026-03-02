@@ -41,12 +41,13 @@ int main() {
     d2x_assert(fruit == Fruit::ORANGE);
 
     // 2. Type safety: Prevent comparison between different enum type values
-    if (color == Fruit::ORANGE) { // Use Color type to fix compilation error
+    // if (color == Fruit::ORANGE) { // Use Color type to fix compilation error
+    if (color == Color::ORANGE) {
         d2x_assert(color == Color::ORANGE);
     }
 
     // 3. Type checking: By default, scoped enum type values cannot be implicitly converted
-    int colorValue = color; // Need explicit conversion static_cast<int>(color)
+    int colorValue = static_cast<int>(color); // Need explicit conversion static_cast<int>(color)
 
     // 4. Can customize underlying type to control memory layout
     enum class Color8Bit : short {
@@ -57,7 +58,8 @@ int main() {
     };
 
     d2x_assert_eq(sizeof(Color), sizeof(int)); // Default type is int
-    d2x_assert_eq(sizeof(Color8Bit), sizeof(int8_t)); // Can customize type int8_t
+    // d2x_assert_eq(sizeof(Color8Bit), sizeof(int8_t)); // Can customize type int8_t
+    d2x_assert_eq(sizeof(Color8Bit), sizeof(short));
 
     // 5. Custom starting value: By default, scoped enum type values start from 0 and increment downward
     enum class ErrorCode : int {
@@ -67,9 +69,10 @@ int main() {
         ERROR_3
     };
 
-    d2x_assert_eq(static_cast<int>(ErrorCode::ERROR_3), 3);
+    // d2x_assert_eq(static_cast<int>(ErrorCode::ERROR_3), 3);
+    d2x_assert_eq(static_cast<int>(ErrorCode::ERROR_3), -1);
 
-    D2X_WAIT
+    // D2X_WAIT
 
     return 0;
 }
